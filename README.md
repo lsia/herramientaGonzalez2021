@@ -9,7 +9,7 @@ La compilación binaria requiere un sistema operativo Windows 7 o superior y .NE
 
 La ejecución de algunos de los experimentos requiere que la herramienta de aprendizaje automático WEKA 3.8.1 o superior se encuentre previamente instalada.
 
-#Ejecución por línea de comandos
+# Ejecución por línea de comandos
 La herramienta de análisis de cadencias de tecleo es una aplicación de consola desarrollada en C\# bajo .NET Core 3.1. La distribución binaria que se pone a disponibilidad en forma libre y gratuita ejecuta bajo el sistema operativo Windows, pero es factible compilar el código fuente utilizando versiones de .NET Core para otras plataformas como Linux o MacOS. Los parámetros de línea de comandos no se modifican en estos casos.
 
 El patrón general de invocación tiene la forma
