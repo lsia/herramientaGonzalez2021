@@ -1,0 +1,58 @@
+\begin{tikzpicture}
+	\begin{groupplot}[group style={group size=1 by 2,vertical sep=0pt}, ymin=0, xmin=0, xmax=<%=xmax%>, width=\textwidth, height=0.3 \textwidth,xticklabels={,,}]
+	
+	\nextgroupplot[ymax=<%=ymax%>, ylabel={t [ms]}]
+		<%=pattern_partitions%>  
+
+		\addplot[name path=PATTERN, color=black, line width=1] coordinates 
+		{ <%=pattern%> }; 
+
+
+		\addplot[name path=sm1,color=gray,dashed] coordinates 
+		{ <%=sm1%> }; 
+		\addplot [
+			dashed, 
+			color=gray, 
+			fill=gray, 
+			fill opacity=0.1
+		]
+		fill between[of=PATTERN and sm1];
+		\addplot[name path=sm2,color=gray,dotted] coordinates 
+		{ <%=sm2%> }; 
+		\addplot [
+			dashed, 
+			color=gray, 
+			fill=gray, 
+			fill opacity=0.05
+		]
+		fill between[of=sm1 and sm2];
+
+		\addplot[name path=sp1,color=gray,dashed] coordinates 
+		{ <%=sp1%> }; 
+		\addplot [
+			dashed, 
+			color=gray, 
+			fill=gray, 
+			fill opacity=0.1
+		]
+		fill between[of=PATTERN and sp1];
+		\addplot[name path=sp2,color=gray,dotted] coordinates 
+		{ <%=sp2%> }; 
+		\addplot [
+			dashed, 
+			color=gray, 
+			fill=gray, 
+			fill opacity=0.05
+		]
+		fill between[of=sp1 and sp2];
+
+		<%=observations%> 
+		
+		\nextgroupplot[ylabel={Order},height=0.15 \textwidth,yticklabels={,,},xmax=<%=xmax%>,ymin=0,ymax=7,ybar,ybar interval=1]
+		<%=orders_partitions%>  
+
+		\addplot[fill=lightgray] coordinates 
+		{ <%=orders%> };
+		
+	\end{groupplot}
+\end{tikzpicture}

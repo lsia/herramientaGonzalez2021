@@ -1,0 +1,84 @@
+\documentclass[a4]{article}
+
+\usepackage[margin=0.5in]{geometry}
+
+\usepackage{float}
+\usepackage{graphicx}
+
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{forest}
+
+\usepackage{seqsplit}
+\usepackage{keystroke}
+
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{longtable}
+
+\usepackage{tikz,amsmath,siunitx,pgfplots}
+\usetikzlibrary{arrows,snakes,backgrounds,patterns,matrix,shapes,fit,calc,shadows,plotmarks,pgfplots.groupplots}
+\usepgfplotslibrary{fillbetween}
+
+
+\newcommand{\comment}[1]{}
+
+\endofdump
+
+\begin{document}
+
+
+
+\begin{huge}
+\noindent 
+\textbf{USER} <%=user%> (<%=gender%>) \\
+
+\noindent 
+\textbf{SESSION} <%=id%> \\
+\end{huge}
+
+\section{Timings}
+
+\begin{tikzpicture}
+	\begin{axis}[xmin=0,xmax=<%=xmax%>,ymin=0,ymax=<%=ymax%>,ylabel={t [ms]},width=\textwidth,height=0.5 \textwidth] 
+		\addplot[color=red] coordinates 
+		{ <%=hts%> }; 
+		\addplot[color=blue] coordinates 
+		{ <%=fts%> }; 
+		\legend{Hold time, Flight time}
+	\end{axis}	
+\end{tikzpicture}
+
+\section{Text}
+
+\noindent
+\texttt{{\seqsplit{<%=text_raw%>}}}
+
+\vspace{5mm}
+
+\noindent
+\texttt{{\seqsplit{<%=text%>}}}
+
+\section{Timing}
+
+<%=pattern_vectors%>
+
+
+% \section{Pattern vector details - Hold time}
+
+% \tiny
+% <%=pattern_vector_details_ht%>
+
+% \section{Pattern vector details - Flight time}
+
+% \tiny
+% <%=pattern_vector_details_ft%>
+
+\end{document}

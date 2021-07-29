@@ -1,0 +1,82 @@
+﻿\documentclass{standalone}
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+
+\usepackage{academicons}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{keystroke}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{subcaption}
+
+\usepackage{tikz}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.multipart}
+
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+\pgfplotsset{compat=1.17}
+
+\begin{document}
+
+
+\begin{tikzpicture}
+	\begin{axis}[
+	    legend pos=south west,
+		xlabel=<%=name%>,
+		ylabel={Error [\%]},
+		xmajorgrids,
+		ymajorgrids,
+		xmin = 0,
+		ymin = 0,
+		xmax = <%=xmax%>,
+		ymax = 100
+	]
+
+\addplot[name path=frr] coordinates {
+<%=frr%>
+};
+
+\addplot[name path=far, dashed] coordinates {
+<%=far%>
+};
+
+
+%
+% EER
+% 
+
+\addplot[only marks, mark=*] table {
+<%=eerx%>    <%=eery%>
+};
+
+\addplot[mark=none, dotted] (<%=eerx%>, 0) -- (<%=eerx%>, 100);
+
+\addplot[dotted] (0,<%=eery%>) -- (<%=xmax%>,<%=eery%>);
+
+%
+% REGION FILL
+%
+
+\path[name path=xaxis] (0,0) -- (<%=xmax%>,0);
+\addplot [gray!20, fill opacity=0.5] fill between [of=frr and xaxis];
+\addplot [gray!40, fill opacity=0.5] fill between [of=xaxis and far];
+
+
+\addlegendentry{FRR};
+\addlegendentry{FAR};
+\addlegendentry{EER};
+
+	\end{axis}
+\end{tikzpicture}
+
+\end{document}
